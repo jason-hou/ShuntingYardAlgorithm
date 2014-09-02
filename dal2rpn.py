@@ -1,9 +1,11 @@
 #coding=utf-8
 '''convert Direct Algebraic Logic(DAL) to Reverse Polish Notation'''
 
+import re
+
 __author__ = 'Jason Hou'
 
-order = {'-':0, '+':0, '*':1, '/':1, '(':2, ')':2}
+order = {'-':0, '+':0, '*':1, '/':1, '(':2, ')':2, '^':2}
 
 def convert(dal):
     '''convert dal to rpn'''
@@ -21,7 +23,8 @@ def convert(dal):
             output.append(stack.pop())
             push(op)
     assert dal.count('(') == dal.count(')'), 'parentheses not match'
-    for i in dal.split():
+    source = [i for i in re.split(r'(\D)',dal) if i.strip()]
+    for i in source:
         if i.isdigit():
             output.append(i)
         elif i in order:

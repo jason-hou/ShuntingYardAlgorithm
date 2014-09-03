@@ -25,7 +25,12 @@ class convertTest(unittest.TestCase):
         self.assertEqual(convert(' 1 +2/(2-3) '), convert('1+2/(2-3)'))
         
     def testPower(self):
-        self.assertEqual(convert(' 1 * 2^3/(2-3) '), '1 2 3 ^ * 2 3 - /')
+        self.assertEqual(convert(' 1*2^3-3/2 '), 
+            '1 2 3 ^ * 3 2 / -')
+    
+    def testPriority(self):
+        self.assertEqual(convert(' 1 * 2^3/(2-3)^(3*2) '), 
+            '1 2 3 ^ * 2 3 - 3 2 * ^ /')
         
 if __name__ == '__main__':
     unittest.main()

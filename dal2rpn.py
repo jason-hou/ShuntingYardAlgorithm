@@ -5,7 +5,7 @@ import re
 
 __author__ = 'Jason Hou'
 
-order = {'-':0, '+':0, '*':1, '/':1, '(':2, ')':2, '^':2}
+order = {'-':0, '+':0, '*':1, '/':1, '(':3, ')':3, '^':2}
 
 def convert(dal):
     '''convert dal to rpn'''
